@@ -4,6 +4,7 @@ namespace Thru\RenderCat\Components;
 
 use MatthiasMullie\Minify;
 
-class JavascriptAsset extends CompressableAsset {
+class JavascriptAsset extends CompressableAsset
+{
 
 }
