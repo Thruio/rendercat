@@ -1,8 +1,10 @@
 <?php
 
-namespace AE\Components;
+namespace Thru\RenderCat\Components;
 
-class CompressableAssetDigest{
+use MatthiasMullie\Minify;
+
+abstract class CompressableAssetDigest{
 
     /**
      * @var array[CompressableAsset]
@@ -20,14 +22,16 @@ class CompressableAssetDigest{
 
     public function render(){
         $date = date("Y-m-d H:i:s");
-        $output = "/***** Generated at {$date} ******/\n\n";
-        #echo "Rendering... " .count($this->compressableAssets) . "\n";
+        $minifier = $this->getMinifier();
+        $minifier->add("/***** Generated at {$date} ******/\n\n");
+
         foreach($this->compressableAssets as $compressableAsset){
             /** @var $compressableAsset CompressableAsset */
-            $output .= "\n\n/******** \n * {$compressableAsset->getName()}\n **************/\n\n";
-            $output .= $compressableAsset->render();
+            $minifier->add("\n\n/******** \n * {$compressableAsset->getName()}\n **************/\n\n");
+            $minifier->add($compressableAsset->render());
         };
-        return $this->debugMode ? $output : gzcompress($output);
+
+        return $minifier->minify();
     }
 
     public function getHash(){
@@ -38,4 +42,6 @@ class CompressableAssetDigest{
         }
         return hash("SHA1", $hash);
     }
+
+    abstract protected function getMinifier();
 }

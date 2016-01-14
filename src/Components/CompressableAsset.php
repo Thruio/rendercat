@@ -1,8 +1,8 @@
 <?php
 
-namespace AE\Components;
+namespace Thru\RenderCat\Components;
 
-class CompressableAsset{
+abstract class CompressableAsset{
 
     private $code;
     private $name;
@@ -32,4 +32,6 @@ class CompressableAsset{
     public function getName(){
         return $this->name;
     }
+
+
 }
