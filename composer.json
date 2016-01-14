@@ -1,0 +1,29 @@
+{
+  "name"       : "thru.io/rendercat",
+  "description": "Matts special front end library.",
+  "authors"    : [
+    {
+      "name" : "Matthew Baggett",
+      "email": "matthew@baggett.me"
+    }
+  ],
+  "require"    : {
+    "matthiasmullie/minify": "^1.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=4.7",
+    "fzaninotto/faker": "1.5.*@dev",
+    "raveren/kint": "dev-master",
+    "squizlabs/php_codesniffer": "*"
+  },
+  "autoload"   : {
+    "psr-4": {
+      "Thru\\RenderCat\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Thru\\RenderCat\\Test\\": "tests/"
+    }
+  }
+}
